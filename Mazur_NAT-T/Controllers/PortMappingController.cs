@@ -1,42 +1,72 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using Open.Nat;
 
-namespace Mazur_NAT_T.Forms
+namespace Mazur_NAT_T.Controllers
 {
-    public partial class FormPortMapping : Form
+    public class PortMappingController
     {
-        public FormPortMapping()
+        private static IPortMappingView _view;
+
+        public PortMappingController(IPortMappingView view)
         {
-            InitializeComponent();
-            Load += new EventHandler(FormPortMapping_Load);
+            _view = view;
+            view.SetController(this);
         }
 
-        private void FormPortMapping_Load(object sender, System.EventArgs e)
+        public async Task ListMappings()
         {
-            _ = ListMappings();
+            try
+            {
+                int addedMappings = 0;
+                // Discover mappings
+                var nat = new NatDiscoverer();
+
+                // Stop discovering after 5 seconds
+                var cts = new CancellationTokenSource(5000);
+
+                // Discover UPnP NAT device
+                var device = await nat.DiscoverDeviceAsync(PortMapper.Upnp, cts);
+
+                _view.ClearCheckBox();
+
+                // Write each mapping's information "mapping_name: NAT_device_IP:external_port -> host_machine_IP:internal_port"
+                foreach (var mapping in await device.GetAllMappingsAsync())
+                {
+                    string item = mapping.Description + ": " + await device.GetExternalIPAsync() + ":" + mapping.PublicPort + " -> "
+                        + mapping.PrivateIP + ":" + mapping.PrivatePort + "\n";
+
+                    _view.AddToCheckBox(item);
+                    addedMappings++;
+                }
+                if (addedMappings == 0) _view.AddToCheckBox("Nebyla nalezena žádná mapování");
+            }
+            // Catching if UPnP NAT device wasnt found
+            catch (NatDeviceNotFoundException)
+            {
+                _view.ShowMessageBox("Nebylo nalezeno UPnP zařízení.");
+            }
         }
 
-
-        private async Task CreateMappingAsync()
+        public async Task CreateMappingAsync(string mappingName, string extPortText, string intPortText)
         {
-            string mappingName = txtBoxMappingName.Text,
-                extPortText = txtBoxExternalPort.Text,
-                intPortText = txtBoxInternalPort.Text;
 
             // Check if ports are numbers and if they are in registered port range
-            if(!(int.TryParse(extPortText, out int extPort)) && extPort < 1024 && extPort > 49151){
-                MessageBox.Show("Neplatný externí port");
+            if (!(int.TryParse(extPortText, out int extPort)) && extPort < 1024 && extPort > 49151)
+            {
+                _view.ShowMessageBox("Neplatný externí port");
                 return;
             }
 
-            if(!(int.TryParse(intPortText, out int intPort)) && intPort < 1024 && intPort > 49151)
+            if (!(int.TryParse(intPortText, out int intPort)) && intPort < 1024 && intPort > 49151)
             {
-                MessageBox.Show("Neplatný interní port");
+                _view.ShowMessageBox("Neplatný interní port");
                 return;
             }
             try
@@ -64,65 +94,32 @@ namespace Mazur_NAT_T.Forms
             // Catching if UPnP NAT device wasnt found
             catch (NatDeviceNotFoundException)
             {
-                MessageBox.Show("Nebylo nalezeno UPnP zařízení.");
+                _view.ShowMessageBox("Nebylo nalezeno UPnP zařízení.");
             }
 
             // Catching mapping errors
-            catch(MappingException me)
+            catch (MappingException me)
             {
                 switch (me.ErrorCode)
                 {
                     case 718:
-                        MessageBox.Show("Externí port je již využíván.");
+                        _view.ShowMessageBox("Externí port je již využíván.");
                         break;
 
                     case 728:
-                        MessageBox.Show("Mapovací tabulka routeru je plná.");
+                        _view.ShowMessageBox("Mapovací tabulka routeru je plná.");
                         break;
                 }
             }
 
         }
 
-        private async Task ListMappings()
+        public async Task DeleteCheckedMappings()
         {
             try
             {
-                int addedMappings = 0;
-                // Discover mappings
-                var nat = new NatDiscoverer();
+                List<string> checkedItems = _view.CheckedItems();
 
-                // Stop discovering after 5 seconds
-                var cts = new CancellationTokenSource(5000);
-
-                // Discover UPnP NAT device
-                var device = await nat.DiscoverDeviceAsync(PortMapper.Upnp, cts);
-
-                checkBoxMappings.Items.Clear();
-
-                // Write each mapping's information "mapping_name: NAT_device_IP:external_port -> host_machine_IP:internal_port"
-                foreach (var mapping in await device.GetAllMappingsAsync())
-                {
-                    string item = mapping.Description + ": " + await device.GetExternalIPAsync() + ":" + mapping.PublicPort + " -> "
-                        + mapping.PrivateIP + ":" + mapping.PrivatePort + "\n";
-
-                    checkBoxMappings.Items.Add(item, false);
-                    addedMappings++;
-                }
-                if(addedMappings == 0) checkBoxMappings.Items.Add("Nebyla nalezena žádná mapování", false);
-            }
-            // Catching if UPnP NAT device wasnt found
-            catch (NatDeviceNotFoundException)
-            {
-                MessageBox.Show("Nebylo nalezeno UPnP zařízení.");
-            }
-        }
-
-        // Delete mapping using name of the mapping
-        private async Task DeleteCheckedMappings()
-        {
-            try
-            {
                 // Discover mappings
                 var nat = new NatDiscoverer();
 
@@ -133,10 +130,9 @@ namespace Mazur_NAT_T.Forms
                 var device = await nat.DiscoverDeviceAsync(PortMapper.Upnp, cts);
 
                 //Find checked items
-                foreach(var item in checkBoxMappings.CheckedItems)
+                foreach (string item in checkedItems)
                 {
-                    int i = checkBoxMappings.Items.IndexOf(item);
-                    string mappingName = GetUntilOrEmpty(checkBoxMappings.Items[i].ToString());
+                    string mappingName = GetUntilOrEmpty(item);
 
                     // Compare each mapping name with given name, if they match, delete the mapping
                     foreach (var mapping in await device.GetAllMappingsAsync())
@@ -153,7 +149,7 @@ namespace Mazur_NAT_T.Forms
             // Catching if UPnP NAT device wasnt found
             catch (NatDeviceNotFoundException)
             {
-                MessageBox.Show("Nebylo nalezeno UPnP zařízení.");
+                _view.ShowMessageBox("Nebylo nalezeno UPnP zařízení.");
             }
         }
 
@@ -171,17 +167,6 @@ namespace Mazur_NAT_T.Forms
             }
 
             return String.Empty;
-        }
-
-        private void btnMapping_Click(object sender, EventArgs e)
-        {
-            _ = CreateMappingAsync();
-            
-        }
-
-        private void btnDeleteMapping_Click(object sender, EventArgs e)
-        {
-            _ = DeleteCheckedMappings();
         }
     }
 }

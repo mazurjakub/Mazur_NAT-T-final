@@ -1,25 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Mazur_NAT_T.Forms;
+using Mazur_NAT_T.Controllers;
 
 namespace Mazur_NAT_T
 {
-    public partial class FormMainMenu : Form
+    public partial class MainMenuView : Form
     {
         private Button currentButton;
         private Form activeForm;
-        public static bool alreadyLoaded = false;
         public static bool isFirstMessage = true;
-        public static string lblHolep = "Okno pro komunikaci se serverem a klientem";
+        private List<Form> _views;
+        private HolePunchingController _hpController;
 
 
-        public FormMainMenu()
+        public MainMenuView(List<Form> views, HolePunchingController hpc)
         {
             InitializeComponent();
             btnCloseChildForm.Visible = false;
             this.Text = string.Empty;
-
+            _views = views;
+            _hpController = hpc;
         }
 
         // This method highlights clicked button
@@ -61,7 +63,7 @@ namespace Mazur_NAT_T
         {
             //Checking if any ChildForm is open
             if (activeForm != null)
-                activeForm.Close();
+                activeForm.Hide();
             ActivateButton(btnSender);
 
             //Setting new ChildForm as active form and changing its properties so it fits into panelObrazovka
@@ -69,48 +71,40 @@ namespace Mazur_NAT_T
             secondaryForm.TopLevel = false;
             secondaryForm.FormBorderStyle = FormBorderStyle.None;
             secondaryForm.Dock = DockStyle.Fill;
-            this.panelObrazovka.Controls.Add(secondaryForm);
-            this.panelObrazovka.Tag = secondaryForm;
+            this.panelMain.Controls.Add(secondaryForm);
+            this.panelMain.Tag = secondaryForm;
             secondaryForm.BringToFront();
             secondaryForm.Show();
-            lblNadpis.Text = secondaryForm.Text;
+            lblTitle.Text = secondaryForm.Text;
         }
 
         // Button methods
 
-        private void btnNAT_Click(object sender, EventArgs e)
-        {
-            OpenSecondaryForm(new Forms.FormIntro(), sender);
-        }
-
         private void btnHP_Click(object sender, EventArgs e)
         {
-            OpenSecondaryForm(new Forms.FormHolePunching(), sender);
+            OpenSecondaryForm(_views[0], sender);
+        }
+
+        private void btnPM_Click(object sender, EventArgs e)
+        {
+            OpenSecondaryForm(_views[1], sender);
+        }
+
+        private void btnNAT_Click(object sender, EventArgs e)
+        {
+            OpenSecondaryForm(_views[2], sender);
+        }
+
+        private void btnText_Click(object sender, EventArgs e)
+        {
+            OpenSecondaryForm(_views[3], sender);
         }
 
         //Closing app button
         private void btnEnd_Click(object sender, EventArgs e)
         {
-            try
-            {
-                FormHolePunching.client.Close();
-            }
-            catch(Exception)
-            {
-
-            }
+            _hpController.EndCommunication();
             Application.Exit();
-        }
-
-        private void btnPM_Click(object sender, EventArgs e)
-        {
-            OpenSecondaryForm(new Forms.FormPortMapping(), sender);
-        }
-
-        
-        private void btnText_Click(object sender, EventArgs e)
-        {
-            OpenSecondaryForm(new Forms.FormAnimations(), sender);
         }
 
         //Button to close active ChildForm and going back to main screen
@@ -118,9 +112,9 @@ namespace Mazur_NAT_T
         {
             if (activeForm != null)
             {
-                activeForm.Close();
+                activeForm.Hide();
                 DisableButton();
-                lblNadpis.Text = "Domovská obrazovka";
+                lblTitle.Text = "Domovská obrazovka";
                 btnCloseChildForm.Visible = false;
                 currentButton = null;
 

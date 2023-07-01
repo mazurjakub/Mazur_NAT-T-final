@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\jakub\OneDrive\Desktop\</PublishUrl>
+    <PublishUrl>C:\Users\jakub\OneDrive\Desktop\BP\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -92,55 +93,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormMainMenu.cs">
+    <Compile Include="Controllers\HolePunchingController.cs" />
+    <Compile Include="Controllers\IHolePunchingView.cs" />
+    <Compile Include="Controllers\IPortMappingView.cs" />
+    <Compile Include="Controllers\PortMappingController.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Views\MainMenuView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMainMenu.Designer.cs">
-      <DependentUpon>FormMainMenu.cs</DependentUpon>
+    <Compile Include="Views\MainMenuView.Designer.cs">
+      <DependentUpon>MainMenuView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormHolePunching.cs">
+    <Compile Include="Views\HolePunchingView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormHolePunching.Designer.cs">
-      <DependentUpon>FormHolePunching.cs</DependentUpon>
+    <Compile Include="Views\HolePunchingView.Designer.cs">
+      <DependentUpon>HolePunchingView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormIntro.cs">
+    <Compile Include="Views\IntroView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormIntro.Designer.cs">
-      <DependentUpon>FormIntro.cs</DependentUpon>
+    <Compile Include="Views\IntroView.Designer.cs">
+      <DependentUpon>IntroView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormPortMapping.cs">
+    <Compile Include="Views\PortMappingView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormPortMapping.Designer.cs">
-      <DependentUpon>FormPortMapping.cs</DependentUpon>
+    <Compile Include="Views\PortMappingView.Designer.cs">
+      <DependentUpon>PortMappingView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormAnimations.cs">
+    <Compile Include="Views\AnimationsView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormAnimations.Designer.cs">
-      <DependentUpon>FormAnimations.cs</DependentUpon>
+    <Compile Include="Views\AnimationsView.Designer.cs">
+      <DependentUpon>AnimationsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormMainMenu.cs.resx">
-      <DependentUpon>FormMainMenu.cs</DependentUpon>
+    <EmbeddedResource Include="Views\MainMenuView.cs.resx">
+      <DependentUpon>MainMenuView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMainMenu.resx">
-      <DependentUpon>FormMainMenu.cs</DependentUpon>
+    <EmbeddedResource Include="Views\MainMenuView.resx">
+      <DependentUpon>MainMenuView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormHolePunching.resx">
-      <DependentUpon>FormHolePunching.cs</DependentUpon>
+    <EmbeddedResource Include="Views\HolePunchingView.resx">
+      <DependentUpon>HolePunchingView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormIntro.resx">
-      <DependentUpon>FormIntro.cs</DependentUpon>
+    <EmbeddedResource Include="Views\IntroView.resx">
+      <DependentUpon>IntroView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormPortMapping.resx">
-      <DependentUpon>FormPortMapping.cs</DependentUpon>
+    <EmbeddedResource Include="Views\PortMappingView.resx">
+      <DependentUpon>PortMappingView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormAnimations.resx">
-      <DependentUpon>FormAnimations.cs</DependentUpon>
+    <EmbeddedResource Include="Views\AnimationsView.resx">
+      <DependentUpon>AnimationsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -189,5 +195,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,7 @@
 ﻿
-namespace Mazur_NAT_T.Forms
+namespace Mazur_NAT_T.Views
 {
-    partial class FormPortMapping
+    partial class PortMappingView
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Mazur_NAT_T.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPortMapping));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PortMappingView));
             this.btnMapping = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCanYouSeeMe = new System.Windows.Forms.LinkLabel();
@@ -65,7 +65,7 @@ namespace Mazur_NAT_T.Forms
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(872, 98);
+            this.label1.Size = new System.Drawing.Size(881, 98);
             this.label1.TabIndex = 6;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -74,7 +74,7 @@ namespace Mazur_NAT_T.Forms
             this.lblCanYouSeeMe.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblCanYouSeeMe.AutoSize = true;
             this.lblCanYouSeeMe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblCanYouSeeMe.Location = new System.Drawing.Point(472, 64);
+            this.lblCanYouSeeMe.Location = new System.Drawing.Point(472, 58);
             this.lblCanYouSeeMe.Name = "lblCanYouSeeMe";
             this.lblCanYouSeeMe.Size = new System.Drawing.Size(212, 18);
             this.lblCanYouSeeMe.TabIndex = 7;
@@ -84,6 +84,7 @@ namespace Mazur_NAT_T.Forms
             // txtBoxMappingName
             // 
             this.txtBoxMappingName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtBoxMappingName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBoxMappingName.Location = new System.Drawing.Point(108, 263);
             this.txtBoxMappingName.Name = "txtBoxMappingName";
             this.txtBoxMappingName.Size = new System.Drawing.Size(100, 20);
@@ -113,6 +114,7 @@ namespace Mazur_NAT_T.Forms
             // txtBoxExternalPort
             // 
             this.txtBoxExternalPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtBoxExternalPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBoxExternalPort.Location = new System.Drawing.Point(108, 300);
             this.txtBoxExternalPort.Name = "txtBoxExternalPort";
             this.txtBoxExternalPort.Size = new System.Drawing.Size(100, 20);
@@ -132,6 +134,7 @@ namespace Mazur_NAT_T.Forms
             // txtBoxInternalPort
             // 
             this.txtBoxInternalPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtBoxInternalPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBoxInternalPort.Location = new System.Drawing.Point(108, 336);
             this.txtBoxInternalPort.Name = "txtBoxInternalPort";
             this.txtBoxInternalPort.Size = new System.Drawing.Size(100, 20);
@@ -167,7 +170,7 @@ namespace Mazur_NAT_T.Forms
             this.checkBoxMappings.Size = new System.Drawing.Size(616, 232);
             this.checkBoxMappings.TabIndex = 21;
             // 
-            // FormPortMapping
+            // PortMappingView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -185,7 +188,7 @@ namespace Mazur_NAT_T.Forms
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnMapping);
             this.MinimumSize = new System.Drawing.Size(800, 39);
-            this.Name = "FormPortMapping";
+            this.Name = "PortMappingView";
             this.Text = "Port Mapping";
             this.ResumeLayout(false);
             this.PerformLayout();

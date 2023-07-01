@@ -1,7 +1,7 @@
 ﻿
 namespace Mazur_NAT_T
 {
-    partial class FormMainMenu
+    partial class MainMenuView
     {
         /// <summary>
         /// Vyžaduje se proměnná návrháře.
@@ -29,7 +29,7 @@ namespace Mazur_NAT_T
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainMenu));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuView));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnEnd = new System.Windows.Forms.Button();
             this.btnText = new System.Windows.Forms.Button();
@@ -37,19 +37,19 @@ namespace Mazur_NAT_T
             this.btnHP = new System.Windows.Forms.Button();
             this.btnNAT = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
-            this.labelNazevApp = new System.Windows.Forms.Label();
+            this.labelAppName = new System.Windows.Forms.Label();
             this.panelTitleBar = new System.Windows.Forms.Panel();
             this.btnCloseChildForm = new System.Windows.Forms.Button();
-            this.lblNadpis = new System.Windows.Forms.Label();
-            this.panelObrazovka = new System.Windows.Forms.Panel();
-            this.lblTextUvod = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.panelMain = new System.Windows.Forms.Panel();
+            this.lblTextIntro = new System.Windows.Forms.Label();
             this.lblAutor = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panelTitleBar.SuspendLayout();
-            this.panelObrazovka.SuspendLayout();
+            this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,21 +114,21 @@ namespace Mazur_NAT_T
             // panelLogo
             // 
             this.panelLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(111)))), ((int)(((byte)(173)))));
-            this.panelLogo.Controls.Add(this.labelNazevApp);
+            this.panelLogo.Controls.Add(this.labelAppName);
             resources.ApplyResources(this.panelLogo, "panelLogo");
             this.panelLogo.Name = "panelLogo";
             // 
-            // labelNazevApp
+            // labelAppName
             // 
-            resources.ApplyResources(this.labelNazevApp, "labelNazevApp");
-            this.labelNazevApp.ForeColor = System.Drawing.Color.White;
-            this.labelNazevApp.Name = "labelNazevApp";
+            resources.ApplyResources(this.labelAppName, "labelAppName");
+            this.labelAppName.ForeColor = System.Drawing.Color.White;
+            this.labelAppName.Name = "labelAppName";
             // 
             // panelTitleBar
             // 
             this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(111)))), ((int)(((byte)(173)))));
             this.panelTitleBar.Controls.Add(this.btnCloseChildForm);
-            this.panelTitleBar.Controls.Add(this.lblNadpis);
+            this.panelTitleBar.Controls.Add(this.lblTitle);
             resources.ApplyResources(this.panelTitleBar, "panelTitleBar");
             this.panelTitleBar.ForeColor = System.Drawing.SystemColors.Control;
             this.panelTitleBar.Name = "panelTitleBar";
@@ -142,24 +142,24 @@ namespace Mazur_NAT_T
             this.btnCloseChildForm.UseVisualStyleBackColor = true;
             this.btnCloseChildForm.Click += new System.EventHandler(this.btnCloseChildForm_Click);
             // 
-            // lblNadpis
+            // lblTitle
             // 
-            resources.ApplyResources(this.lblNadpis, "lblNadpis");
-            this.lblNadpis.Name = "lblNadpis";
+            resources.ApplyResources(this.lblTitle, "lblTitle");
+            this.lblTitle.Name = "lblTitle";
             // 
-            // panelObrazovka
+            // panelMain
             // 
-            this.panelObrazovka.BackColor = System.Drawing.Color.White;
-            this.panelObrazovka.Controls.Add(this.lblTextUvod);
-            this.panelObrazovka.Controls.Add(this.lblAutor);
-            this.panelObrazovka.Controls.Add(this.pictureBox1);
-            resources.ApplyResources(this.panelObrazovka, "panelObrazovka");
-            this.panelObrazovka.Name = "panelObrazovka";
+            this.panelMain.BackColor = System.Drawing.Color.White;
+            this.panelMain.Controls.Add(this.lblTextIntro);
+            this.panelMain.Controls.Add(this.lblAutor);
+            this.panelMain.Controls.Add(this.pictureBox1);
+            resources.ApplyResources(this.panelMain, "panelMain");
+            this.panelMain.Name = "panelMain";
             // 
-            // lblTextUvod
+            // lblTextIntro
             // 
-            resources.ApplyResources(this.lblTextUvod, "lblTextUvod");
-            this.lblTextUvod.Name = "lblTextUvod";
+            resources.ApplyResources(this.lblTextIntro, "lblTextIntro");
+            this.lblTextIntro.Name = "lblTextIntro";
             // 
             // lblAutor
             // 
@@ -178,7 +178,7 @@ namespace Mazur_NAT_T
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.panelObrazovka);
+            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
             this.Name = "FormMainMenu";
@@ -187,8 +187,8 @@ namespace Mazur_NAT_T
             this.panelLogo.ResumeLayout(false);
             this.panelTitleBar.ResumeLayout(false);
             this.panelTitleBar.PerformLayout();
-            this.panelObrazovka.ResumeLayout(false);
-            this.panelObrazovka.PerformLayout();
+            this.panelMain.ResumeLayout(false);
+            this.panelMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -204,13 +204,13 @@ namespace Mazur_NAT_T
         private System.Windows.Forms.Button btnNAT;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Panel panelTitleBar;
-        private System.Windows.Forms.Label lblNadpis;
-        private System.Windows.Forms.Label labelNazevApp;
-        private System.Windows.Forms.Panel panelObrazovka;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label labelAppName;
+        private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Button btnCloseChildForm;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblAutor;
-        private System.Windows.Forms.Label lblTextUvod;
+        private System.Windows.Forms.Label lblTextIntro;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

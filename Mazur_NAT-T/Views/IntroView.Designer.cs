@@ -1,7 +1,7 @@
 ﻿
-namespace Mazur_NAT_T.Forms
+namespace Mazur_NAT_T.Views
 {
-    partial class FormIntro
+    partial class IntroView
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Mazur_NAT_T.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormIntro));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IntroView));
             this.panelNATT = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();

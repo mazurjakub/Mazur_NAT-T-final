@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Mazur_NAT_T.Forms
+namespace Mazur_NAT_T.Views
 {
-    public partial class FormIntro : Form
+    public partial class IntroView : Form
     {
-        public FormIntro()
+        public IntroView()
         {
             InitializeComponent();
         }

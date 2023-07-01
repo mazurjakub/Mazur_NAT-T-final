@@ -1,7 +1,7 @@
 ﻿
-namespace Mazur_NAT_T.Forms
+namespace Mazur_NAT_T.Views
 {
-    partial class FormHolePunching
+    partial class HolePunchingView
     {
         /// <summary>
         /// Required designer variable.
@@ -72,6 +72,7 @@ namespace Mazur_NAT_T.Forms
             // 
             this.btnSendMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSendMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(111)))), ((int)(((byte)(173)))));
+            this.btnSendMessage.FlatAppearance.BorderSize = 0;
             this.btnSendMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnSendMessage.ForeColor = System.Drawing.Color.White;
             this.btnSendMessage.Location = new System.Drawing.Point(471, 393);
@@ -84,6 +85,7 @@ namespace Mazur_NAT_T.Forms
             // 
             // txtBoxMessage
             // 
+            this.txtBoxMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBoxMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtBoxMessage.Location = new System.Drawing.Point(84, 444);
             this.txtBoxMessage.MaximumSize = new System.Drawing.Size(381, 29);
@@ -94,6 +96,7 @@ namespace Mazur_NAT_T.Forms
             // 
             // txtBoxOutput
             // 
+            this.txtBoxOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBoxOutput.Location = new System.Drawing.Point(15, 69);
             this.txtBoxOutput.MaximumSize = new System.Drawing.Size(550, 300);
             this.txtBoxOutput.MinimumSize = new System.Drawing.Size(550, 300);
@@ -117,6 +120,7 @@ namespace Mazur_NAT_T.Forms
             // txtBoxKey
             // 
             this.txtBoxKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBoxKey.Location = new System.Drawing.Point(741, 367);
             this.txtBoxKey.Name = "txtBoxKey";
             this.txtBoxKey.Size = new System.Drawing.Size(100, 20);
@@ -152,15 +156,14 @@ namespace Mazur_NAT_T.Forms
             this.btnConnect.UseVisualStyleBackColor = false;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
-            // FormHolePunching
+            // HolePunchingView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(888, 504);
             this.Controls.Add(this.panelHP);
-            this.Name = "FormHolePunching";
+            this.Name = "HolePunchingView";
             this.Text = "Hole Punching";
-            this.Load += new System.EventHandler(this.FormHolePunching_Load);
             this.panelHP.ResumeLayout(false);
             this.panelHP.PerformLayout();
             this.ResumeLayout(false);
