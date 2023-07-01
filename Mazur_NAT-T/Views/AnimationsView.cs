@@ -1,27 +1,16 @@
 ﻿using System;
-using System.Drawing;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace Mazur_NAT_T.Views
 {
     public partial class AnimationsView : Form
     {
-
         private bool isRunningHP = false, isRunningPM = false;
-        private Image gifHP = Image.FromHbitmap(Properties.Resources.UDP_HolePunching.GetHbitmap());
-        private Image gifPM = Image.FromHbitmap(Properties.Resources.PortMapping.GetHbitmap());
 
         public AnimationsView()
         {
             InitializeComponent();
         }
-
-        private void FormAnimations_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void btnHP_Anim_Click(object sender, EventArgs e)
         {

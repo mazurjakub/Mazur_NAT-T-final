@@ -22,8 +22,10 @@ namespace Mazur_NAT_T.Controllers
             view.SetController(this);
         }
 
+        
         public void Init()
         {
+            // Setting up UdpClient to connect to server
             server = new Client(configFile[0].Trim().ToString(), configFile[1]);
             udpClient.ExclusiveAddressUse = false;
             udpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
@@ -205,7 +207,7 @@ namespace Mazur_NAT_T.Controllers
                 }
             }
         }
-
+        // Closing threads and udpclient
         public void EndCommunication()
         {
             try
@@ -223,7 +225,7 @@ namespace Mazur_NAT_T.Controllers
             }
             catch(Exception e)
             {
-
+                
             }
         }
 

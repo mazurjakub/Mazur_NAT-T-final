@@ -153,7 +153,6 @@ namespace Mazur_NAT_T.Views
             this.Controls.Add(this.panelAnimations);
             this.Name = "AnimationsView";
             this.Text = "Animace";
-            this.Load += new System.EventHandler(this.FormAnimations_Load);
             this.panelAnimations.ResumeLayout(false);
             this.panelAnimations.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPM)).EndInit();
