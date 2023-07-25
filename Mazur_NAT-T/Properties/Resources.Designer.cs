@@ -61,16 +61,6 @@ namespace Mazur_NAT_T.Properties {
         }
         
         /// <summary>
-        ///   Vyhledá lokalizovaný řetězec podobný 18.118.215.181
-        ///1700.
-        /// </summary>
-        internal static string config {
-            get {
-                return ResourceManager.GetString("config", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap cross1 {

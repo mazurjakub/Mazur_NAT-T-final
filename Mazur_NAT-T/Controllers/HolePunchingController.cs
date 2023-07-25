@@ -1,7 +1,9 @@
 ﻿using Mazur_NAT_T.Models;
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 
@@ -11,7 +13,8 @@ namespace Mazur_NAT_T.Controllers
     {
         private static IHolePunchingView _view;
         private static UdpClient udpClient = new UdpClient();
-        private static string[] configFile = Properties.Resources.config.Split('\n');
+        private static string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\config.txt");
+        private static string[] configFile = File.ReadAllLines(path);
         private Client server, client;
         private bool hasSecondClient = false, hasSendKey = false, isFirstMessage = true;
         private Thread threadListenServer, threadListenClient, threadIsConnected;
@@ -25,37 +28,44 @@ namespace Mazur_NAT_T.Controllers
         
         public void Init()
         {
-            // Setting up UdpClient to connect to server
-            server = new Client(configFile[0].Trim().ToString(), configFile[1]);
-            udpClient.ExclusiveAddressUse = false;
-            udpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-            udpClient.Client.Connect(server.ClientEP);
-            
-
-            if (!hasSecondClient)
+            try
             {
-                //Start recieving data from server
-                threadListenServer = new Thread(() => ReceiveDataFromEP(server.ClientEP))
-                {
-                    IsBackground = true
-                };
-                threadListenServer.Start();
+                // Setting up UdpClient to connect to server
+                server = new Client(configFile[0].Trim().ToString(), configFile[1]);
+                udpClient.ExclusiveAddressUse = false;
+                udpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                udpClient.Client.Connect(server.ClientEP);
 
-                // Start checking if second client has connected
-                threadIsConnected = new Thread(() => IsClientConnected())
+
+                if (!hasSecondClient)
                 {
-                    IsBackground = true
-                };
-                threadIsConnected.Start();
+                    //Start recieving data from server
+                    threadListenServer = new Thread(() => ReceiveDataFromEP(server.ClientEP))
+                    {
+                        IsBackground = true
+                    };
+                    threadListenServer.Start();
+
+                    // Start checking if second client has connected
+                    threadIsConnected = new Thread(() => IsClientConnected())
+                    {
+                        IsBackground = true
+                    };
+                    threadIsConnected.Start();
+                }
+                else
+                {
+                    // If second client is connected, start recieving data from client
+                    threadListenClient = new Thread(() => ReceiveDataFromEP(client.ClientEP))
+                    {
+                        IsBackground = true
+                    };
+                    threadListenClient.Start();
+                }
             }
-            else
+            catch(Exception e)
             {
-                // If second client is connected, start recieving data from client
-                threadListenClient = new Thread(() => ReceiveDataFromEP(client.ClientEP))
-                {
-                    IsBackground = true
-                };
-                threadListenClient.Start();
+                _view.ShowMessageBox("Nelze se připojit k serveru: " + e.Message);
             }
         }
 

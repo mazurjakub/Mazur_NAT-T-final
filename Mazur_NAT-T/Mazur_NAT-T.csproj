@@ -192,7 +192,7 @@
     <Content Include="Resources\PortMapping.gif" />
     <None Include="Resources\UDP_HolePunching.gif" />
     <EmbeddedResource Include="Resources\config.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
