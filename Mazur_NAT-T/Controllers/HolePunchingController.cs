@@ -75,7 +75,7 @@ namespace Mazur_NAT_T.Controllers
             }
             else if (int.Parse(key) < 1 || int.Parse(key) > 999)
             {
-                _view.ShowMessageBox("Klíč může nabývat pouze hodnot 1-999!");
+                _view.ShowMessageBox("Registrační klíč může nabývat pouze hodnot 1-999!");
                 return;
             }
             else if (isFirstMessage)

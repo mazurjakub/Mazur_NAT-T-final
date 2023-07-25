@@ -24,7 +24,7 @@ namespace Mazur_NAT_T.Views
             else
             {
                 pictureBoxHP.Enabled = false;
-                btnHP_Anim.Text = "Start";
+                btnHP_Anim.Text = "Restart";
                 btnHP_Anim.Refresh();
                 isRunningHP = false;
             }
@@ -42,7 +42,7 @@ namespace Mazur_NAT_T.Views
             else
             {
                 pictureBoxPM.Enabled = false;
-                btnPM_Anim.Text = "Start";
+                btnPM_Anim.Text = "Restart";
                 btnPM_Anim.Refresh();
                 isRunningPM = false;
             }

@@ -139,8 +139,8 @@ namespace Mazur_NAT_T.Views
             this.label2.Size = new System.Drawing.Size(644, 36);
             this.label2.TabIndex = 4;
             this.label2.Text = "Tato demonstrace umožňuje navázat spojení mezi dvěma klienty pomocí metody Hole P" +
-    "unching.\r\nZadejte u obou klientů stejný klíč, aby mohlo vzniknou peer-to-peer sp" +
-    "ojení.";
+    "unching.\r\nZadejte u obou klientů stejný klíč (1-999), aby mohlo vzniknou peer-to" +
+    "-peer spojení.";
             // 
             // btnConnect
             // 
