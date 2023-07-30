@@ -164,6 +164,7 @@ namespace Mazur_NAT_T.Controllers
                         _view.WriteToTextBox("\n");
                         _view.WriteToTextBox("Příchozi zpráva z IP: " + endPoint.Address.ToString() + " Port: " + endPoint.Port.ToString());
                         _view.WriteToTextBox("Obsah zprávy: " + request);
+                        
                     }
                 }
                 else
@@ -177,10 +178,12 @@ namespace Mazur_NAT_T.Controllers
         {
             try
             {
-                _view.WriteToTextBox("\n");
-                _view.WriteToTextBox("Navazuji spojení s klientem");
+                _view.WriteToTextBox("\nObdrženy údaje ze serveru.");
+
                 // Stop listening to server and connect UDP client to second client EP
+                _view.WriteToTextBox("Ukončuji spojení se serverem.");
                 threadListenServer.Abort();
+                _view.WriteToTextBox("Zahajuji spojení s druhým klientem.");
                 udpClient.Client.Connect(client.ClientEP);
 
                 // Start recieving data from client
@@ -191,6 +194,7 @@ namespace Mazur_NAT_T.Controllers
                 threadListenClient.Start();
 
                 // Send message to second client to "punch a hole" in NAT device
+                SendDataToEP("Hello", client.ClientEP);
                 SendDataToEP("Hello", client.ClientEP);
 
                 _view.WriteToTextBox("\n");
